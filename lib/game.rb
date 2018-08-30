@@ -16,16 +16,17 @@ class Game
     turn_count % 2 == 0 ? @player_1 : @player_2
   end 
   
-  def won?()
-  WIN_COMBINATIONS.each do |win_combo|
-    if win_combo.all?{|win_index| @board[win_index] == "X"}
-      return win_combo
-    elsif win_combo.all? {|win_index| @board[win_index] == "O"}
-      return win_combo
-    end 
-  end
-  return false
-end 
+  def won?
+    WIN_COMBINATIONS.each do |win_combo|
+      if win_combo.all?{|win_index| @board[win_index] == "X"}
+        win_combo
+      elsif win_combo.all? {|win_index| @board[win_index] == "O"}
+        win_combo
+      else 
+        false
+      end
+    end
+  end 
   
   WIN_COMBINATIONS = [
   [0,1,2],
