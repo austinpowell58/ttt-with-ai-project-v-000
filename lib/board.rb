@@ -44,6 +44,8 @@ class Board
   def update(index, player)
     position = index.to_i - 1
     @cells[position] = player.token
+    @cells[position] = player
+    
   end 
   
   

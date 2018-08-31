@@ -17,16 +17,39 @@ class Game
   end 
   
   def won?
+    win = false 
     WIN_COMBINATIONS.each do |win_combo|
-      if win_combo.all?{|win_index| @board[win_index] == "X"}
-        win_combo
-      elsif win_combo.all? {|win_index| @board[win_index] == "O"}
-        win_combo
-      else 
-        false
-      end
-    end
+      if win_combo.all?{|win_index| @board.cells[win_index] == @player_1.token}
+        win = win_combo
+        return win
+      elsif win_combo.all? {|win_index| @board.cells[win_index] == @player_2.token}
+        win = win_combo
+        return win 
+      end 
+    end 
+    win 
   end 
+  
+  
+  def draw?
+    won? == false && @board.cells.all? {|index| index == @player_1.token || index == @player_2.token}
+  end 
+  
+  def over?
+    draw? || won?
+  end 
+  
+  def winner
+    if won? == false
+      nil
+    elsif won?.all?{|x| @board.cells[x] == @player_1.token}
+      winner = @player_1.token
+    elsif won?.all?{|x| @board.cells[x] == @player_2.token}
+      winner = @player_2.token
+    end 
+  end 
+    
+
   
   WIN_COMBINATIONS = [
   [0,1,2],
@@ -38,6 +61,4 @@ class Game
   [0,4,8],
   [2,4,6]
   ]
-  
-  
-end
+end 
