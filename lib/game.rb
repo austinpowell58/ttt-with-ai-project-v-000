@@ -71,6 +71,7 @@ class Game
   def play()
     until over?() do
     turn()
+  end 
     if won?()
       champion = winner()
       puts "Congratulations #{champion}!"
@@ -78,6 +79,7 @@ class Game
       puts "Cat's Game!"
     end  
   end 
+end 
 
     
     
