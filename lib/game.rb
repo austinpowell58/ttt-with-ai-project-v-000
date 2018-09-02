@@ -50,13 +50,27 @@ class Game
   def turn
     player = current_player
     puts "Please enter 1-9:"
-    index = gets
+    index = player.move(@board)
     if @board.valid_move?(index)
       @board.update(index, player)
     else
-      index
+      puts "Please enter 1-9:"
+      index = player.move(@board)
     end 
   end
+  
+  def play()
+  until over?() do
+    turn()
+  end 
+    if won?()
+      champion = winner()
+      puts "Congratulations #{champion}!"
+    else if draw?()
+      puts "Cat's Game!"
+    end  
+  end 
+end 
     
     
 
