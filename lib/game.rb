@@ -12,43 +12,6 @@ class Game
     [0,4,8],
     [2,4,6]
     ]
-  
-  def one_player
-    puts "Who should go first? Computer or Human"
-    starter = gets.strip
-    if starter == "Computer"
-      new_game = Game.new(Players::Computer.new("X"), Players::Human.new("O"), Board.new)
-      new_game.play
-    else if starter == "Player"
-      new_game = Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new)
-      new_game.play
-    else
-      put "Please select: Computer or Human"
-      starter = gets.strip
-    end
-  end 
-
-  
-  def self.create
-    puts "Welcome to Tic Tac Toe!"
-    puts "How many players? (0 , 1 , 2)"
-    player_count = gets.to_i
-    if player_count == 0 
-      new_game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"),Board.new)
-      new_game.play
-    elsif player_count == 2
-      new_game = Game.new
-      new_game.play 
-    elsif player_count == 1 
-      one_player
-    else
-      puts "Select: '0' , '1' , or '2'"
-      player_count = gets.to_i
-    end
-  end 
-  
-    
-  
 
   def initialize(player_1= Players::Human.new("X") ,player_2= Players::Human.new("O"), board = Board.new)
     @player_1 = player_1
@@ -106,9 +69,8 @@ class Game
   end
   
   def play()
-  until over?() do
+    until over?() do
     turn()
-  end 
     if won?()
       champion = winner()
       puts "Congratulations #{champion}!"
@@ -116,6 +78,8 @@ class Game
       puts "Cat's Game!"
     end  
   end 
+end 
+
 end 
     
     
