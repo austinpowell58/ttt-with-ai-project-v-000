@@ -11,9 +11,7 @@ class Game
   end
   
   def current_player
-    array = @board.cells.select{|a| a == "X" || a == "O"}
-    turn_count = array.size
-    turn_count % 2 == 0 ? @player_1 : @player_2
+    @board.turn_count % 2 == 0 ? @player_1 : @player_2
   end 
   
   def won?
@@ -48,6 +46,18 @@ class Game
       winner = @player_2.token
     end 
   end 
+  
+  def turn
+    player = current_player
+    puts "Please enter 1-9:"
+    index = gets
+    if @board.valid_move?(index)
+      @board.update(index, player)
+    else
+      index
+    end 
+  end
+    
     
 
   
