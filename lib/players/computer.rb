@@ -5,10 +5,8 @@ module Players
     
     def corner
       ["1", "3","7", "9"].find{|a| @board.taken?(a)} 
-    end
+    end 
     
-      
-  
         
     def move(input)
       @board = input
@@ -20,6 +18,7 @@ module Players
       else
         answer = [*1..9].sample
       end
+      
     end 
       
   
